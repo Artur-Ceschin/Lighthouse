@@ -1,7 +1,25 @@
 import { Header } from '../../components/Header';
-import { Box, Text, Flex, Stack, Checkbox, HStack } from '@chakra-ui/react';
+import {
+  Box,
+  Text,
+  Flex,
+  Stack,
+  Checkbox,
+  HStack,
+  SimpleGrid,
+} from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { api } from '../../api';
 
 export default function Home() {
+  const [occurrences, setOccurrences] = useState([]);
+
+  useEffect(() => {
+    api.get('').then((response) => setOccurrences(response.data));
+  }, []);
+
+  console.log(occurrences);
+
   return (
     <Box
       maxWidth="90%"
@@ -24,128 +42,76 @@ export default function Home() {
         flexDirection="column"
       >
         <Text fontSize="2xl">Casos cadastrados</Text>
-        <HStack marginTop="6" spacing="8">
-          <Box
-            w="auto"
-            borderWidth="1px"
-            borderRadius="lg"
-            overflow="hidden"
-            bg="gray.100"
-            h="auto"
-            p="8"
-          >
-            <Stack spacing="1" marginBottom="3">
-              <Text>
-                Nome : <span>Artur Ceschin</span>
-              </Text>
-              <Text>
-                Email : <span>artur.ceschin@gmail.com</span>
-              </Text>
-              <Text>
-                Telefone : <span>(19)98181-4098</span>
-              </Text>
-            </Stack>
-            <Stack spacing="1" marginBottom="3">
-              <Text>
-                Bairro : <span>Mocca SP</span>
-              </Text>
-              <Text>
-                Rua : <span>Rua Andrade da Cunha</span>
-              </Text>
-              <Text>
-                Ponto de referência : <span>Perto da padaria pães frescos</span>
-              </Text>
-            </Stack>
-            <Stack spacing="1" marginBottom="3">
-              <Text>
-                Quantidade de pessoas :{' '}
-                <Text display="inline" color="red.500">
-                  10
+        <SimpleGrid marginY="6" spacing="8" columns={3}>
+          {occurrences.map((occurrence) => (
+            <Box
+              w="auto"
+              minWidth={380}
+              borderWidth="1px"
+              borderRadius="lg"
+              overflow="hidden"
+              bg="gray.100"
+              h="auto"
+              p="8"
+            >
+              <Stack spacing="1" marginBottom="3">
+                <Text>
+                  Nome : <span>{occurrence.userReporter.name}</span>
                 </Text>
-              </Text>
-              <Text>
-                Crianças no local :{' '}
-                <Text display="inline" color="red.500">
-                  Sim
+                <Text>
+                  Email : <span>{occurrence.userReporter.email}</span>
                 </Text>
-              </Text>
-              <Text>
-                Nível de urgência :{' '}
-                <Text display="inline" color="red.500">
-                  7
+                <Text>
+                  Telefone : <span>{occurrence.userReporter.phoneNumber}</span>
                 </Text>
-              </Text>
-            </Stack>
-            <HStack spacing="2">
-              <Text>Caso atendido</Text>
-              <Checkbox
-                size="md"
-                colorScheme="green"
-                defaultIsChecked
-              ></Checkbox>
-            </HStack>
-          </Box>
-          <Box
-            w="auto"
-            borderWidth="1px"
-            borderRadius="lg"
-            overflow="hidden"
-            bg="gray.100"
-            h="auto"
-            p="8"
-          >
-            <Stack spacing="1" marginBottom="3">
-              <Text>
-                Nome : <span>Artur Ceschin</span>
-              </Text>
-              <Text>
-                Email : <span>artur.ceschin@gmail.com</span>
-              </Text>
-              <Text>
-                Telefone : <span>(19)98181-4098</span>
-              </Text>
-            </Stack>
-            <Stack spacing="1" marginBottom="3">
-              <Text>
-                Bairro : <span>Mocca SP</span>
-              </Text>
-              <Text>
-                Rua : <span>Rua Andrade da Cunha</span>
-              </Text>
-              <Text>
-                Ponto de referência : <span>Perto da padaria pães frescos</span>
-              </Text>
-            </Stack>
-            <Stack spacing="1" marginBottom="3">
-              <Text>
-                Quantidade de pessoas :{' '}
-                <Text display="inline" color="red.500">
-                  10
+              </Stack>
+              <Stack spacing="1" marginBottom="3">
+                <Text>
+                  Cidade : <span>{occurrence.location.city}</span>
                 </Text>
-              </Text>
-              <Text>
-                Crianças no local :{' '}
-                <Text display="inline" color="red.500">
-                  Sim
+                <Text>
+                  Bairro : <span>{occurrence.location.address}</span>
                 </Text>
-              </Text>
-              <Text>
-                Nível de urgência :{' '}
-                <Text display="inline" color="red.500">
-                  7
+                <Text>
+                  Rua :{' '}
+                  <span>{occurrence.location.addressAproximateNumber}</span>
                 </Text>
-              </Text>
-            </Stack>
-            <HStack spacing="2">
-              <Text>Caso atendido</Text>
-              <Checkbox
-                size="md"
-                colorScheme="green"
-                defaultIsChecked
-              ></Checkbox>
-            </HStack>
-          </Box>
-        </HStack>
+                <Text>
+                  Ponto de referência :{' '}
+                  <span>{occurrence.location.referencePoints}</span>
+                </Text>
+              </Stack>
+              <Stack spacing="1" marginBottom="3">
+                <Text>
+                  Quantidade de pessoas :{' '}
+                  <Text display="inline" color="red.500">
+                    {occurrence.numberOfPeople}
+                  </Text>
+                </Text>
+                <Text>
+                  Crianças no local :{' '}
+                  <Text display="inline" color="red.500">
+                    {occurrence.isThereChildren === 0 ? 'Não' : 'Sim'}
+                  </Text>
+                </Text>
+                <Text>
+                  Nível de urgência :{' '}
+                  <Text display="inline" color="red.500">
+                    {occurrence.urgencyLevel}
+                  </Text>
+                </Text>
+              </Stack>
+              <HStack spacing="2">
+                <Text>Caso atendido</Text>
+                <Checkbox
+                  size="md"
+                  colorScheme="green"
+                  isChecked={occurrence.isThereNeedForMedicalCare}
+                ></Checkbox>
+              </HStack>
+            </Box>
+          ))}
+        </SimpleGrid>
       </Flex>
     </Box>
   );

@@ -42,7 +42,7 @@ export function Header() {
           </Flex>
           <Flex align="center">
             <Icon color="red.600" as={RiServiceLine} mr="1" fontSize="md" />
-            <Link href="/" fontSize="2xl">
+            <Link href="/partners" fontSize="2xl">
               Parceiros
             </Link>
           </Flex>

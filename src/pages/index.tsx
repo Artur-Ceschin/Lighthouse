@@ -6,7 +6,7 @@ import { Header } from '../components/Header';
 export default function Home() {
   return (
     <Box
-      maxWidth="90%"
+      maxWidth="90vw"
       borderRadius="lg"
       borderWidth="1px"
       bg="gray.200"
