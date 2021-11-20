@@ -1,4 +1,5 @@
-import { Box } from '@chakra-ui/react';
+import { useState } from 'react';
+import { Box, Divider, Stack } from '@chakra-ui/react';
 import { Form } from '../components/Form';
 import { Header } from '../components/Header';
 
@@ -9,14 +10,21 @@ export default function Home() {
       borderRadius="lg"
       borderWidth="1px"
       bg="gray.200"
-      height="80vh"
       mx="auto"
       mt="10"
       boxShadow="dark-lg"
+      minHeight="90vh"
     >
       <Header />
-      <hr />
-      <Form />
+      <Stack
+        borderWidth={1}
+        borderColor="gray.300"
+        marginX="10"
+        marginTop="5"
+      ></Stack>
+      <Box>
+        <Form />
+      </Box>
     </Box>
   );
 }

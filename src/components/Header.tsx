@@ -29,21 +29,21 @@ export function Header() {
       <Flex mx="auto" align="center">
         <HStack spacing="6">
           <Flex align="center">
-            <Icon color="red.600" as={RiDashboardLine} mr="1" size="md" />
-            <Link href="/" fontSize="2xl">
-              <a>Home</a>
+            <Icon color="red.600" as={RiDashboardLine} mr="1" fontSize="md" />
+            <Link href="/home" fontSize="2xl">
+              Home
             </Link>
           </Flex>
           <Flex align="center">
-            <Icon color="red.600" as={RiListUnordered} mr="1" size="md" />
+            <Icon color="red.600" as={RiListUnordered} mr="1" fontSize="md" />
             <Link href="/" fontSize="2xl">
-              <a>Cadastrar vulnerabilidade</a>
+              Cadastrar vulnerabilidade
             </Link>
           </Flex>
           <Flex align="center">
-            <Icon color="red.600" as={RiServiceLine} mr="1" size="md" />
+            <Icon color="red.600" as={RiServiceLine} mr="1" fontSize="md" />
             <Link href="/" fontSize="2xl">
-              <a>Parceiros</a>
+              Parceiros
             </Link>
           </Flex>
         </HStack>
