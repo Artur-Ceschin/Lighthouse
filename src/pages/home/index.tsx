@@ -7,18 +7,28 @@ import {
   Checkbox,
   HStack,
   SimpleGrid,
+  Spinner,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { api } from '../../api';
+import { DrawerIcon } from '../../components/DrawerIcon';
 
 export default function Home() {
   const [occurrences, setOccurrences] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.get('').then((response) => setOccurrences(response.data));
+    try {
+      setLoading(true);
+      api.get('').then((response) => setOccurrences(response.data));
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
-  console.log(occurrences);
+  console.log(loading);
 
   return (
     <Box
@@ -31,6 +41,7 @@ export default function Home() {
       boxShadow="dark-lg"
       minHeight="90vh"
     >
+      <DrawerIcon />
       <Header />
 
       <Flex
@@ -39,14 +50,24 @@ export default function Home() {
         mx="auto"
         mt="4"
         px="6"
+        align="center"
         flexDirection="column"
       >
         <Text fontSize="2xl">Casos cadastrados</Text>
-        <SimpleGrid marginY="6" spacing="8" columns={3}>
+        {loading && (
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="red.500"
+            size="xl"
+          />
+        )}
+        <SimpleGrid marginY="6" spacing="8" columns={[1, 3]}>
           {occurrences.map((occurrence) => (
             <Box
               w="auto"
-              minWidth={380}
+              minWidth={100}
               borderWidth="1px"
               borderRadius="lg"
               overflow="hidden"

@@ -247,7 +247,7 @@ export function Form() {
             <FormControl>
               <FormLabel color="red.600">Nível de urgência</FormLabel>
               <Input
-                placeholder="Digite um número de 0 a 10"
+                placeholder="Digite um número de 0 a 3"
                 borderColor="gray.900"
                 type="number"
                 _hover={{ textDecoration: 'none' }}

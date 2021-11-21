@@ -1,14 +1,33 @@
-import { Flex, Text, Icon, HStack, Box, Avatar, Link } from '@chakra-ui/react';
+import {
+  Flex,
+  Text,
+  HStack,
+  Box,
+  Avatar,
+  Link,
+  useBreakpointValue,
+  IconButton,
+  Icon,
+  Stack,
+} from '@chakra-ui/react';
 import {
   RiNotificationLine,
   RiUserAddLine,
   RiDashboardLine,
   RiListUnordered,
   RiServiceLine,
+  RiMenuLine,
 } from 'react-icons/ri';
 import Image from 'next/image';
+import { useHeaderDrawer } from '../../context/HeaderContextDrawer';
 
-export function Header() {
+export function HeaderNav() {
+  const { onOpen, isOpen } = useHeaderDrawer();
+
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
   return (
     <Flex
       w="100%"
@@ -19,6 +38,8 @@ export function Header() {
       mt="4"
       align="center"
       px="6"
+      flexDirection={['column', 'row']}
+      justify="space-between"
     >
       <Image
         src="/lighthouse.png"
@@ -26,33 +47,37 @@ export function Header() {
         width="80px"
         alt="Logo lighthouse(Farol)"
       />
-      <Flex mx="auto" align="center">
-        <HStack spacing="6">
-          <Flex align="center">
+      <Stack ml={[0, '20']}>
+        <Flex
+          mx="auto"
+          align={['left', 'center']}
+          flexDirection={['column', 'row']}
+        >
+          <Flex align="center" margin="4">
             <Icon color="red.600" as={RiDashboardLine} mr="1" fontSize="md" />
             <Link href="/home" fontSize="2xl">
               Home
             </Link>
           </Flex>
-          <Flex align="center">
+          <Flex align="center" margin="4">
             <Icon color="red.600" as={RiListUnordered} mr="1" fontSize="md" />
             <Link href="/" fontSize="2xl">
               Cadastrar vulnerabilidade
             </Link>
           </Flex>
-          <Flex align="center">
+          <Flex align="center" margin="4">
             <Icon color="red.600" as={RiServiceLine} mr="1" fontSize="md" />
             <Link href="/partners" fontSize="2xl">
               Parceiros
             </Link>
           </Flex>
-        </HStack>
-      </Flex>
-      <Flex align="center" ml="auto">
+        </Flex>
+      </Stack>
+      <Flex align="center" ml="auto" mt={['350px', '0']}>
         <HStack
-          spacing="6"
-          mx="8"
-          pr="8"
+          spacing={['6', '8']}
+          mx={['6', '8']}
+          pr={['6', '8']}
           py="1"
           borderRightWidth={1}
           borderColor="gray.700"
@@ -62,12 +87,14 @@ export function Header() {
         </HStack>
 
         <Flex>
-          <Box mr="4" textAlign="right">
-            <Text>Artur Ceschin</Text>
-            <Text color="gray.800" fontSize="small">
-              artur.ceschin@gmail.com
-            </Text>
-          </Box>
+          {isWideVersion && (
+            <Box mr="4" textAlign="right">
+              <Text>Artur Ceschin</Text>
+              <Text color="gray.800" fontSize="small">
+                artur.ceschin@gmail.com
+              </Text>
+            </Box>
+          )}
           <Avatar
             size="md"
             name="Artur Ceschin"
