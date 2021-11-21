@@ -62,10 +62,12 @@ export default function Partners() {
         flexDirection="column"
         align="center"
       >
-        <Text fontSize="2xl">Nossos parceiros</Text>
+        <Text fontSize="2xl" fontWeight="semi-bold">
+          Nossos parceiros
+        </Text>
         <SimpleGrid marginY="6" columns={[1, 3]}>
           {ongs.map((ong) => (
-            <Flex marginTop="5">
+            <Flex marginTop="5" mr={['0', '10']}>
               <Box
                 maxW="sm"
                 borderWidth="1px"

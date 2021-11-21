@@ -53,7 +53,9 @@ export default function Home() {
         align="center"
         flexDirection="column"
       >
-        <Text fontSize="2xl">Casos cadastrados</Text>
+        <Text fontSize="2xl" fontWeight="semi-bold">
+          Casos cadastrados
+        </Text>
         {loading && (
           <Spinner
             thickness="4px"

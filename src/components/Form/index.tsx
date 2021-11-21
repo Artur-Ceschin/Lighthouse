@@ -57,7 +57,7 @@ export function Form() {
     values.urgencyLevel = Number(values.urgencyLevel);
     values.numberOfPeople = Number(values.numberOfPeople);
     values.isThereVisibleShelter = Number(values.isThereVisibleShelter);
-    console.log(values);
+
     api
       .post('', values)
       .then((response) => {
@@ -80,10 +80,10 @@ export function Form() {
     >
       {isNextFormOpen === false && (
         <Box>
-          <Text fontSize="2xl" fontWeight="bold" my="8" textAlign="center">
+          <Text fontSize="2xl" fontWeight="semi-bold" my="8" textAlign="center">
             Cadastrar pessoas em vulnerabilidade
           </Text>
-          <SimpleGrid columns={[1, 1, 1, 1, 1, 2]} gap={6}>
+          <SimpleGrid columns={[1, 1, 2]} gap={6}>
             <FormControl>
               <FormLabel color="red.600">Nome</FormLabel>
               <Input
@@ -189,7 +189,7 @@ export function Form() {
           <Text fontSize="2xl" fontWeight="bold" my="8" textAlign="center">
             Cenário encontrado
           </Text>
-          <SimpleGrid columns={[1, 1, 1, 1, 1, 2]} gap={6}>
+          <SimpleGrid columns={[1, 1, 2]} gap={6}>
             <FormControl>
               <FormLabel color="red.600">Quantidade de pessoas</FormLabel>
               <Input
