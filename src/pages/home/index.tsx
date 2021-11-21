@@ -28,8 +28,6 @@ export default function Home() {
     }
   }, []);
 
-  console.log(loading);
-
   return (
     <Box
       maxWidth="90%"
