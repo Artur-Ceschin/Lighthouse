@@ -186,7 +186,7 @@ export function Form() {
       )}
       {isNextFormOpen && (
         <Box>
-          <Text fontSize="2xl" fontWeight="bold" my="8" textAlign="center">
+          <Text fontSize="2xl" fontWeight="semi-bold" my="8" textAlign="center">
             Cenário encontrado
           </Text>
           <SimpleGrid columns={[1, 1, 2]} gap={6}>

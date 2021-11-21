@@ -66,7 +66,7 @@ export default function Home() {
           />
         )}
         <SimpleGrid marginY="6" spacing="8" columns={[1, 3]}>
-          {occurrences.map((occurrence) => (
+          {occurrences.map((occurrence, index) => (
             <Box
               w="auto"
               minWidth={100}
@@ -76,6 +76,7 @@ export default function Home() {
               bg="gray.100"
               h="auto"
               p="8"
+              key={index}
             >
               <Stack spacing="1" marginBottom="3">
                 <Text>

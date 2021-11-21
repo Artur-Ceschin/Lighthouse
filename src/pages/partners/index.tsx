@@ -66,8 +66,8 @@ export default function Partners() {
           Nossos parceiros
         </Text>
         <SimpleGrid marginY="6" columns={[1, 3]}>
-          {ongs.map((ong) => (
-            <Flex marginTop="5" mr={['0', '10']}>
+          {ongs.map((ong, index) => (
+            <Flex marginTop="5" mr={['0', '10']} key={index}>
               <Box
                 maxW="sm"
                 borderWidth="1px"
