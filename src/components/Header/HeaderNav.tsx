@@ -4,7 +4,6 @@ import {
   HStack,
   Box,
   Avatar,
-  Link,
   useBreakpointValue,
   IconButton,
   Icon,
@@ -20,6 +19,8 @@ import {
 } from 'react-icons/ri';
 import Image from 'next/image';
 import { useHeaderDrawer } from '../../context/HeaderContextDrawer';
+import Link from 'next/link';
+import { ActiveLink } from '../ActiveLink';
 
 export function HeaderNav() {
   const { onOpen, isOpen } = useHeaderDrawer();
@@ -55,21 +56,39 @@ export function HeaderNav() {
         >
           <Flex align="center" margin="4">
             <Icon color="red.600" as={RiDashboardLine} mr="1" fontSize="md" />
-            <Link href="/home" fontSize="2xl">
-              Home
-            </Link>
+            <ActiveLink href="/home">
+              <Text
+                fontSize="xl"
+                cursor="pointer"
+                _hover={{ color: 'red.500' }}
+              >
+                Home
+              </Text>
+            </ActiveLink>
           </Flex>
           <Flex align="center" margin="4">
             <Icon color="red.600" as={RiListUnordered} mr="1" fontSize="md" />
-            <Link href="/" fontSize="2xl">
-              Cadastrar vulnerabilidade
-            </Link>
+            <ActiveLink href="/">
+              <Text
+                fontSize="xl"
+                cursor="pointer"
+                _hover={{ color: 'red.500' }}
+              >
+                Cadastrar vulnerabilidade
+              </Text>
+            </ActiveLink>
           </Flex>
           <Flex align="center" margin="4">
             <Icon color="red.600" as={RiServiceLine} mr="1" fontSize="md" />
-            <Link href="/partners" fontSize="2xl">
-              Parceiros
-            </Link>
+            <ActiveLink href="/partners">
+              <Text
+                fontSize="xl"
+                cursor="pointer"
+                _hover={{ color: 'red.500' }}
+              >
+                Cadastrar vulnerabilidade
+              </Text>
+            </ActiveLink>
           </Flex>
         </Flex>
       </Stack>
